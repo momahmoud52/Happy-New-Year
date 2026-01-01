@@ -1,0 +1,393 @@
+/* ==========================================================
+   Romantic New Year 2026 – style.css (PRO)
+   Cinematic | Glow | Animations | Mobile-first
+   ========================================================== */
+
+/* =====================
+   CSS Variables
+   ===================== */
+:root {
+  --bg-main: #0b0b16;
+  --bg-soft: #14142b;
+  --pink-main: #ff6fa5;
+  --pink-soft: rgba(255, 111, 165, 0.45);
+  --white: #ffffff;
+  --text-soft: rgba(255, 255, 255, 0.75);
+
+  --radius-lg: 22px;
+  --radius-md: 14px;
+
+  --transition-fast: 0.25s ease;
+  --transition-medium: 0.45s ease;
+  --transition-slow: 0.8s ease;
+
+  --glow-soft: 0 0 25px rgba(255, 111, 165, 0.35);
+  --glow-strong: 0 0 55px rgba(255, 111, 165, 0.7);
+}
+
+/* =====================
+   Reset & Base
+   ===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background:
+    radial-gradient(circle at top, #1b1b3a, var(--bg-main));
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+/* =====================
+   Pages System
+   ===================== */
+.page {
+  display: none;
+  min-height: 100vh;
+  width: 100%;
+  padding: 28px 16px 70px;
+  position: relative;
+  z-index: 1;
+}
+
+.page-active {
+  display: block;
+  animation: pageIn var(--transition-slow);
+}
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.page-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* =====================
+   Glow Utility
+   ===================== */
+.glow {
+  text-shadow: 0 0 18px rgba(255, 111, 165, 0.65);
+}
+
+/* =====================
+   Global Effects
+   ===================== */
+#global-effects {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =====================
+   Transition Layer
+   ===================== */
+#transition-layer {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, #1b1b3a, #05050d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 999;
+  transition: opacity var(--transition-slow);
+}
+
+#transition-layer.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.transition-text {
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  color: var(--pink-main);
+  animation: flicker 1.6s infinite;
+}
+
+@keyframes flicker {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+/* =====================
+   Password Page
+   ===================== */
+#page-password {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.password-header .title {
+  font-size: 1.9rem;
+  margin-bottom: 10px;
+}
+
+.password-header .subtitle {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+}
+
+.password-box {
+  margin-top: 42px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+#password-input {
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--pink-soft);
+  color: var(--white);
+  font-size: 1rem;
+  outline: none;
+  transition: var(--transition-fast);
+}
+
+#password-input:focus {
+  box-shadow: var(--glow-soft);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* hide reveal helpers visually */
+#password-input::-ms-reveal,
+#password-input::-webkit-credentials-auto-fill-button {
+  display: none;
+}
+
+#password-submit {
+  padding: 14px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--pink-main), #ff94c2);
+  font-weight: 700;
+  box-shadow: var(--glow-soft);
+  transition: var(--transition-medium);
+}
+
+#password-submit:active {
+  transform: scale(0.95);
+}
+
+.feedback {
+  min-height: 22px;
+  font-size: 0.9rem;
+  color: var(--pink-main);
+}
+
+.password-footer {
+  margin-top: 60px;
+  font-size: 0.8rem;
+  color: var(--text-soft);
+}
+
+/* =====================
+   Main Header
+   ===================== */
+.main-header {
+  text-align: center;
+  margin-bottom: 55px;
+}
+
+.main-title {
+  font-size: 2.1rem;
+  margin-bottom: 8px;
+}
+
+.main-subtitle {
+  color: var(--text-soft);
+}
+
+/* =====================
+   Sections
+   ===================== */
+.section {
+  margin-bottom: 80px;
+}
+
+.section-title {
+  font-size: 1.55rem;
+  margin-bottom: 22px;
+}
+
+/* =====================
+   Horizontal Gallery (CONSISTENT SIZE)
+   ===================== */
+.horizontal-gallery {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 12px;
+}
+
+.horizontal-gallery::-webkit-scrollbar {
+  height: 6px;
+}
+
+.horizontal-gallery::-webkit-scrollbar-thumb {
+  background: var(--pink-soft);
+  border-radius: 10px;
+}
+
+/* الصندوق هو الأساس */
+.gallery-item {
+  min-width: 260px;
+  height: 340px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  scroll-snap-align: center;
+  box-shadow: var(--glow-soft);
+  transition: var(--transition-medium);
+  position: relative;
+}
+
+/* الصورة / الفيديو تملأ الصندوق */
+.gallery-item img,
+.gallery-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* تأثير Hover */
+.gallery-item:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--glow-strong);
+}
+
+
+/* =====================
+   Music Section
+   ===================== */
+.music-list {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+}
+
+.music-item {
+  min-width: 170px;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: var(--glow-soft);
+  transition: var(--transition-medium);
+}
+
+.music-item:active {
+  transform: scale(0.94);
+}
+
+/* =====================
+   Final Button
+   ===================== */
+.section-final {
+  text-align: center;
+}
+
+.final-button {
+  padding: 18px 36px;
+  font-size: 1.2rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--pink-main), #ff94c2);
+  box-shadow: var(--glow-strong);
+  animation: pulse 2.6s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: var(--glow-soft); }
+  50% { transform: scale(1.06); box-shadow: var(--glow-strong); }
+  100% { transform: scale(1); box-shadow: var(--glow-soft); }
+}
+
+/* =====================
+   Messages Page
+   ===================== */
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 40px;
+}
+
+.message-box {
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: var(--glow-soft);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: var(--transition-slow);
+}
+
+/* =====================
+   Desktop Enhancements
+   ===================== */
+@media (min-width: 768px) {
+  .main-title { font-size: 2.8rem; }
+  .gallery-item { min-width: 300px; }
+  .transition-text { font-size: 2rem; }
+}
+
+.caption {
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  text-align: center;
+  width: fit-content;
+  max-width: 100%;
+  margin: 10px auto;
+  white-space: nowrap;
+}
+
+/* =====================
+   Back Button
+   ===================== */
+.back-button {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--pink-soft);
+  color: var(--white);
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: var(--glow-soft);
+  transition: var(--transition-fast);
+}
+
+.back-button:active {
+  transform: scale(0.95);
+}
