@@ -1,41 +1,61 @@
 /* ==========================================================
-   Romantic New Year 2026 – script.js (PRO)
-   State-driven | Cinematic | Secure | Mobile-safe
+   Romantic New Year 2026 – script.js
+   Clean | State-driven | Cinematic | Mobile-safe
    ========================================================== */
 
 /* =====================
-   DOM Cache
+   DOM Helpers
    ===================== */
-const $ = (s, p = document) => p.querySelector(s);
-const $$ = (s, p = document) => [...p.querySelectorAll(s)];
+const $ = (selector, scope = document) => scope.querySelector(selector);
+const $$ = (selector, scope = document) =>
+  Array.from(scope.querySelectorAll(selector));
+
+/* =====================
+   App Cache
+   ===================== */
 const APP = {
   body: document.body,
+
   pages: {
     password: $('#page-password'),
     main: $('#page-main'),
     messages: $('#page-messages')
   },
+
   transition: $('#transition-layer'),
   transitionText: $('.transition-text'),
-  passwordInput: $('#password-input'),
-  passwordBtn: $('#password-submit'),
-  passwordFeedback: $('#password-feedback'),
-  globalMusic: $('#global-music'),
-  musicItems: $$('.music-item'),
-  toMessagesBtn: $('#to-messages'),
-  messageBoxes: $$('.message-box')
+
+  password: {
+    input: $('#password-input'),
+    button: $('#password-submit'),
+    feedback: $('#password-feedback')
+  },
+
+  audio: {
+    background: $('#global-music'),
+    buttons: $$('.music-item')
+  },
+
+  navigation: {
+    toMessages: $('#to-messages')
+  },
+
+  messages: {
+    boxes: $$('.message-box')
+  }
 };
+
 /* =====================
-   Config (EDIT HERE)
+   Configuration
    ===================== */
 const CONFIG = {
-  PASSWORD_HASH: '1-5-2005', // غيّره لاحقاً
+  PASSWORD: '1-5-2005',
   TRANSITION_DURATION: 1600,
   MUSIC_VOLUME: 0.45,
   MESSAGE_DELAY: 1300
 };
 
-const ERRORS = [
+const ERROR_MESSAGES = [
   'ليس كل القلوب يُسمح لها بالدخول 💔',
   'هذا السر لا يعرفه إلا قلب واحد',
   'الذكريات لا تُفتح بسهولة',
@@ -43,25 +63,28 @@ const ERRORS = [
 ];
 
 /* =====================
-   State
+   App State
    ===================== */
-const State = {
-  current: 'locked',
+const STATE = {
+  screen: 'locked',
   audioUnlocked: false,
   currentTrack: null
 };
 
 /* =====================
-   Core – State Machine
+   State Control
    ===================== */
-function setState(next) {
-  State.current = next;
-  APP.body.setAttribute('data-app-state', next);
+function setState(nextState) {
+  STATE.screen = nextState;
+  APP.body.dataset.appState = nextState;
 }
 
-function showPage(key) {
-  Object.values(APP.pages).forEach(p => p.classList.remove('page-active'));
-  APP.pages[key]?.classList.add('page-active');
+function showPage(pageKey) {
+  Object.values(APP.pages).forEach(page =>
+    page.classList.remove('page-active')
+  );
+
+  APP.pages[pageKey]?.classList.add('page-active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -83,91 +106,91 @@ function playTransition(text = '...') {
 /* =====================
    Audio System
    ===================== */
-function unlockAudio() {
-  if (State.audioUnlocked) return;
-  State.audioUnlocked = true;
-  APP.globalMusic.volume = CONFIG.MUSIC_VOLUME;
-  APP.globalMusic.play().catch(() => {});
+function unlockAudioOnce() {
+  if (STATE.audioUnlocked) return;
+
+  STATE.audioUnlocked = true;
+  APP.audio.background.volume = CONFIG.MUSIC_VOLUME;
+  APP.audio.background.play().catch(() => {});
 }
 
-function playMusic(src) {
-  unlockAudio();
+function playTrack(src) {
+  unlockAudioOnce();
 
-  if (State.currentTrack === src) {
-    APP.globalMusic.pause();
-    State.currentTrack = null;
+  if (STATE.currentTrack === src) {
+    APP.audio.background.pause();
+    STATE.currentTrack = null;
     return;
   }
 
-  State.currentTrack = src;
-  APP.globalMusic.src = src;
-  APP.globalMusic.play().catch(() => {});
+  STATE.currentTrack = src;
+  APP.audio.background.src = src;
+  APP.audio.background.play().catch(() => {});
 }
 
 /* =====================
-   Security – Password
+   Password Logic
    ===================== */
-function deny() {
-  APP.passwordFeedback.textContent =
-    ERRORS[Math.floor(Math.random() * ERRORS.length)];
-  APP.passwordInput.value = '';
-  APP.passwordInput.focus();
+function showError() {
+  APP.password.feedback.textContent =
+    ERROR_MESSAGES[Math.floor(Math.random() * ERROR_MESSAGES.length)];
+
+  APP.password.input.value = '';
+  APP.password.input.focus();
 }
 
-
-async function accept() {
-  APP.passwordFeedback.textContent = '';
+async function unlockExperience() {
+  APP.password.feedback.textContent = '';
   setState('unlocked');
 
-  await playTransition(' فتاتي مرحباً بكِ…');
+  await playTransition('فتاتي مرحباً بكِ…');
 
-  /* إزالة صفحة كلمة المرور نهائياً */
   APP.pages.password.remove();
-
   showPage('main');
-  unlockAudio();
+  unlockAudioOnce();
 }
 
-
-/* Prevent paste / reveal / inspect helpers */
-['paste', 'copy', 'cut', 'contextmenu'].forEach(evt =>
-  APP.passwordInput.addEventListener(evt, e => e.preventDefault())
+/* =====================
+   Password Protection
+   ===================== */
+['paste', 'copy', 'cut', 'contextmenu'].forEach(event =>
+  APP.password.input.addEventListener(event, e => e.preventDefault())
 );
 
-APP.passwordInput.addEventListener('input', () => {
-  APP.passwordInput.type = 'password';
+APP.password.input.addEventListener('input', () => {
+  APP.password.input.type = 'password';
 });
 
 /* =====================
    Events – Password
    ===================== */
-APP.passwordBtn.addEventListener('click', () => {
-  unlockAudio();
+APP.password.button.addEventListener('click', () => {
+  unlockAudioOnce();
 
-  if (APP.passwordInput.value === CONFIG.PASSWORD_HASH) {
-    accept();
+  if (APP.password.input.value === CONFIG.PASSWORD) {
+    unlockExperience();
   } else {
-    deny();
+    showError();
   }
 });
 
-APP.passwordInput.addEventListener('keydown', e => {
-  if (e.key === 'Enter') APP.passwordBtn.click();
+APP.password.input.addEventListener('keydown', e => {
+  if (e.key === 'Enter') APP.password.button.click();
 });
 
 /* =====================
    Music Buttons
    ===================== */
-APP.musicItems.forEach(btn => {
-  btn.addEventListener('click', () => {
-    playMusic(btn.dataset.audioSrc);
+APP.audio.buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    playTrack(button.dataset.audioSrc);
   });
 });
 
 /* =====================
    Navigation
    ===================== */
-APP.toMessagesBtn.addEventListener('click', async () => {
+APP.navigation.toMessages.addEventListener('click', async () => {
   setState('messages');
 
   await playTransition('إلى قلبك…');
@@ -180,20 +203,20 @@ APP.toMessagesBtn.addEventListener('click', async () => {
    Messages Animation
    ===================== */
 function revealMessages() {
-  APP.messageBoxes.forEach((box, i) => {
+  APP.messages.boxes.forEach((box, index) => {
     box.style.opacity = '0';
     box.style.transform = 'translateY(20px)';
 
     setTimeout(() => {
       box.style.opacity = '1';
       box.style.transform = 'translateY(0)';
-    }, i * CONFIG.MESSAGE_DELAY);
+    }, index * CONFIG.MESSAGE_DELAY);
   });
 }
 
 /* =====================
-   Global Safety
+   Global Safety Net
    ===================== */
 window.addEventListener('error', () => {
-  /* silent fail – keep magic alive */
+  /* intentional silent fail */
 });
