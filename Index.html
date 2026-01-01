@@ -4,8 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <meta name="theme-color" content="#0b0b16" />
-
   <title>سنة جديدة… وقصة حب لا تنتهي ❤️ | 2026</title>
+
+  <!-- SEO -->
   <meta name="description" content="تجربة عاطفية خاصة – مصممة لقلب واحد فقط | 2026" />
 
   <!-- Fonts -->
@@ -15,203 +16,252 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Page-level helpers only (kept minimal) -->
-  <style>
-    .back-button {
-      display: inline-block;
-      padding: 10px 20px;
-      background: #f0f0f0;
-      color: #333;
-      text-decoration: none;
-      border-radius: 6px;
-      margin-bottom: 16px;
-      transition: background-color 0.3s ease;
-    }
-    .back-button:hover {
-      background-color: #ddd;
-    }
-  </style>
 </head>
-
 <body data-app-state="locked">
 
-  <!-- Background Music -->
-  <audio id="global-music" preload="auto" loop data-audio="background">
-    <source src="love-story-437006.mp3" type="audio/mpeg" />
-  </audio>
+<!-- ============================= -->
+<!-- Global Audio (JS Controlled) -->
+<!-- ============================= -->
+<audio id="global-music" preload="auto" loop data-audio="background">
+  <source src="love-story-437006.mp3" type="audio/mpeg" />
+</audio>
 
-  <!-- Global Visual Layers -->
-  <div id="global-effects" aria-hidden="true"></div>
+<!-- ============================= -->
+<!-- Global Effects Layer -->
+<!-- ============================= -->
+<div id="global-effects" aria-hidden="true"></div>
 
-  <div id="transition-layer" aria-hidden="true">
-    <div class="transition-inner">
-      <span class="transition-text">...</span>
-    </div>
+<!-- ============================= -->
+<!-- Transition Layer (Cinematic) -->
+<!-- ============================= -->
+<div id="transition-layer" aria-hidden="true">
+  <div class="transition-inner">
+    <span class="transition-text">...</span>
   </div>
+</div>
 
-  <!-- ================= Password Page ================= -->
-  <section id="page-password" class="page page-active" data-page="password">
-    <div class="page-inner">
+<!-- ============================= -->
+<!-- Password Gate Page -->
+<!-- ============================= -->
+<section id="page-password" class="page page-active" data-page="password">
+  <div class="page-inner">
 
-      <header class="password-header">
-        <h1 class="title glow">هذه الصفحة خُلقت لقلب واحد فقط…</h1>
-        <p class="subtitle">إن لم تكوني أنتِ، فلن يفتح شيء</p>
-      </header>
+    <header class="password-header">
+      <h1 class="title glow">هذه الصفحة خُلقت لقلب واحد فقط…</h1>
+      <p class="subtitle">إن لم تكوني أنتِ، فلن يفتح شيء</p>
+    </header>
 
-      <div class="password-box" data-secure="true">
-        <input
-          id="password-input"
-          type="password"
-          placeholder="أهم تاريخ ليا"
-          aria-label="Password"
-          autocomplete="off"
-          spellcheck="false"
-          data-lock-input
-        />
+    <div class="password-box" data-secure="true">
+      <input
+        id="password-input"
+        type="password"
+        inputmode="text"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="اهم تاريخ ليا"
+        aria-label="Password"
+        data-lock-input
+      />
 
-        <button id="password-submit" data-action="unlock" aria-label="Enter">
-          دخول
-        </button>
+      <button
+        id="password-submit"
+        aria-label="Enter"
+        data-action="unlock"
+      >
+        دخول
+      </button>
 
-        <p id="password-feedback" class="feedback" aria-live="polite"></p>
+      <p id="password-feedback" class="feedback" aria-live="polite"></p>
+    </div>
+
+    <footer class="password-footer">
+      <span>كل عام وانتِ معي يا رفيقة دربي</span>
+    </footer>
+
+  </div>
+</section>
+
+<!-- ============================= -->
+<!-- Main Experience Page -->
+<!-- ============================= -->
+<section id="page-main" class="page" data-page="main">
+  <div class="page-inner">
+
+    <header class="main-header">
+      <h1 class="main-title glow">سنة جديدة… وقصة حب لا تنتهي ❤️ | 2026</h1>
+      <p class="main-subtitle">كل ما كان… وكل ما سيكون</p>
+    </header>
+
+    <!-- Images -->
+    <section class="section section-images">
+      <h2 class="section-title">ذكرياتنا</h2>
+
+      <div class="horizontal-gallery" data-scroll="x">
+        <article class="gallery-item" data-animate="fade-up">
+          <img src="1.jpeg" alt="Memory 1" />
+          <span class="caption">ضحكة لا تُنسى</span>
+        </article>
+
+        <article class="gallery-item" data-animate="fade-up">
+          <img src="2.jpeg" alt="Memory 2" />
+          <span class="caption">أنتِ هنا</span>
+        </article>
+
+        <article class="gallery-item" data-animate="fade-up">
+          <img src="3.jpeg" alt="Memory 3" />
+          <span class="caption">قلبي</span>
+        </article>
+
+              <article class="gallery-item" data-animate="fade-up">
+          <img src="54.jpeg" alt="Memory 3" />
+          <span class="caption">اميرتي</span>
+        </article>
+
+        <article class="gallery-item" data-animate="fade-up">
+          <img src="4.jpeg" alt="Memory 4" />
+          <span class="caption">العالم كله</span>
+        </article>
+
+        
+        <article class="gallery-item" data-animate="fade-up">
+          <img src="5.jpeg" alt="Memory 4" />
+          <span class="caption">مشاكلنا</span>
+        </article>
+
+        
+        <article class="gallery-item" data-animate="fade-up">
+          <img src="9.jpeg" alt="Memory 4" />
+          <span class="caption">إنجازاتك</span>
+        </article>
+
+        
+        <article class="gallery-item" data-animate="fade-up">
+          <img src="7.jpeg" alt="Memory 4" />
+          <span class="caption">اشطر شيف</span>
+        </article>
+             <article class="gallery-item" data-animate="fade-up">
+          <img src="10.jpeg" alt="Memory 4" />
+          <span class="caption">ستيتش </span>
+        </article>
       </div>
+    </section>
 
-      <footer class="password-footer">
-        <span>كل عام وأنتِ معي يا رفيقة دربي</span>
-      </footer>
+    <!-- Videos -->
+    <section class="section section-videos">
+      <h2 class="section-title">لحظات تتحرك</h2>
 
-    </div>
-  </section>
-
-  <!-- ================= Main Page ================= -->
-  <section id="page-main" class="page" data-page="main">
-    <div class="page-inner">
-
-      <header class="main-header">
-        <h1 class="main-title glow">سنة جديدة… وقصة حب لا تنتهي ❤️ | 2026</h1>
-        <p class="main-subtitle">كل ما كان… وكل ما سيكون</p>
-      </header>
-
-      <!-- Memories -->
-      <section class="section section-images">
-        <h2 class="section-title">ذكرياتنا</h2>
-
-        <div class="horizontal-gallery" data-scroll="x">
-          <article class="gallery-item" data-animate="fade-up">
-            <img src="1.jpeg" alt="ضحكة لا تُنسى" />
-            <span class="caption">ضحكة لا تُنسى</span>
-          </article>
-
-          <article class="gallery-item" data-animate="fade-up">
-            <img src="2.jpeg" alt="أنتِ هنا" />
-            <span class="caption">أنتِ هنا</span>
-          </article>
-
-          <article class="gallery-item" data-animate="fade-up">
-            <img src="3.jpeg" alt="قلبي" />
-            <span class="caption">قلبي</span>
-          </article>
-
-          <article class="gallery-item" data-animate="fade-up">
-            <img src="54.jpeg" alt="أميرتي" />
-            <span class="caption">أميرتي</span>
-          </article>
-
-          <article class="gallery-item" data-animate="fade-up">
-            <img src="4.jpeg" alt="العالم كله" />
-            <span class="caption">العالم كله</span>
-          </article>
-
-          <article class="gallery-item" data-animate="fade-up">
-            <img src="5.jpeg" alt="مشاكلنا" />
-            <span class="caption">مشاكلنا</span>
-          </article>
-
-          <article class="gallery-item" data-animate="fade-up">
-            <img src="9.jpeg" alt="إنجازاتك" />
-            <span class="caption">إنجازاتك</span>
-          </article>
-
-          <article class="gallery-item" data-animate="fade-up">
-            <img src="7.jpeg" alt="أشطر شيف" />
-            <span class="caption">أشطر شيف</span>
-          </article>
-
-          <article class="gallery-item" data-animate="fade-up">
-            <img src="10.jpeg" alt="ستيتش" />
-            <span class="caption">ستيتش</span>
-          </article>
-        </div>
-      </section>
-
-      <!-- Videos -->
-      <section class="section section-videos">
-        <h2 class="section-title">لحظات تتحرك</h2>
-
-        <div class="horizontal-gallery" data-scroll="x">
-          <article class="gallery-item video-item" data-animate="zoom-in"><video src="20.mp4" controls preload="metadata"></video></article>
-          <article class="gallery-item video-item" data-animate="zoom-in"><video src="30.mp4" controls preload="metadata"></video></article>
-          <article class="gallery-item video-item" data-animate="zoom-in"><video src="40.mp4" controls preload="metadata"></video></article>
-          <article class="gallery-item video-item" data-animate="zoom-in"><video src="50.mp4" controls preload="metadata"></video></article>
-          <article class="gallery-item video-item" data-animate="zoom-in"><video src="60.mp4" controls preload="metadata"></video></article>
-          <article class="gallery-item video-item" data-animate="zoom-in"><video src="70.mp4" controls preload="metadata"></video></article>
-          <article class="gallery-item video-item" data-animate="zoom-in"><video src="80.mp4" controls preload="metadata"></video></article>
-          <article class="gallery-item video-item" data-animate="zoom-in"><video src="90.mp4" controls preload="metadata"></video></article>
-        </div>
-      </section>
-
-      <!-- Music -->
-      <section class="section section-music">
-        <h2 class="section-title">أغانينا</h2>
-
-        <div class="music-list">
-          <button class="music-item" data-audio-src="New folder/1.mpeg">بيسو</button>
-          <button class="music-item" data-audio-src="New folder/2.mp4">بسبوسة</button>
-          <button class="music-item" data-audio-src="New folder/3.mp4">بسبس</button>
-          <button class="music-item" data-audio-src="New folder/4.mp4">بسبوستي</button>
-          <button class="music-item" data-audio-src="New folder/5.mpeg">بوسي</button>
-          <button class="music-item" data-audio-src="New folder/6.mpeg">كتكوتي</button>
-          <button class="music-item" data-audio-src="New folder/7.mpeg">مطلعة عيني</button>
-          <button class="music-item" data-audio-src="New folder/9.mpeg">قطتي</button>
-          <button class="music-item" data-audio-src="New folder/10.mpeg">روح بابي</button>
-          <button class="music-item" data-audio-src="New folder/11.mpeg">أم العيال</button>
-          <button class="music-item" data-audio-src="New folder/12.mpeg">بسنت</button>
-          <button class="music-item" data-audio-src="New folder/13.mpeg">حبي</button>
-        </div>
-      </section>
-
-      <!-- CTA -->
-      <section class="section section-final">
-        <button id="to-messages" class="final-button glow" data-action="go-messages">
-          إلى صغيرتي ❤️
-        </button>
-      </section>
-
-    </div>
-  </section>
-
-  <!-- ================= Messages Page ================= -->
-  <section id="page-messages" class="page" data-page="messages">
-    <div class="page-inner">
-
-      <a href="index.html" class="back-button">⟵ العودة إلى الذكريات</a>
-
-      <header class="messages-header">
-        <h1 class="glow">…</h1>
-      </header>
-
-      <div class="messages-container">
-        <div class="message-box" data-animate="fade-in">كل سنة وأنتِ البداية والنهاية</div>
-        <div class="message-box" data-animate="fade-in">2026 لن تكون سنة… ستكون نحن</div>
-        <div class="message-box" data-animate="fade-in">وجودك هو العيد الحقيقي</div>
-        <div class="message-box" data-animate="fade-in">أحبك أكثر مما تستطيع الكلمات قوله</div>
+      <div class="horizontal-gallery" data-scroll="x">
+        <article class="gallery-item video-item" data-animate="zoom-in">
+          <video src="20.mp4" preload="metadata" controls></video>
+        </article>
+             <article class="gallery-item video-item" data-animate="zoom-in">
+          <video src="30.mp4" preload="metadata" controls></video>
+        </article>
+             <article class="gallery-item video-item" data-animate="zoom-in">
+          <video src="40.mp4" preload="metadata" controls></video>
+        </article>
+             <article class="gallery-item video-item" data-animate="zoom-in">
+          <video src="50.mp4" preload="metadata" controls></video>
+        </article>
+             <article class="gallery-item video-item" data-animate="zoom-in">
+          <video src="60.mp4" preload="metadata" controls></video>
+        </article>
+             <article class="gallery-item video-item" data-animate="zoom-in">
+          <video src="70.mp4" preload="metadata" controls></video>
+        </article>
+             <article class="gallery-item video-item" data-animate="zoom-in">
+          <video src="80.mp4" preload="metadata" controls></video>
+        </article>
+             <article class="gallery-item video-item" data-animate="zoom-in">
+          <video src="90.mp4" preload="metadata" controls></video>
+        </article>
       </div>
+    </section>
 
+    <!-- Music -->
+    <section class="section section-music">
+      <h2 class="section-title">أغانينا</h2>
+
+      <div class="music-list">
+        <button class="music-item" data-audio-src="1.mpeg">بيسو</button>
+        <button class="music-item" data-audio-src="2.mp4">بسبوسة</button>
+        <button class="music-item" data-audio-src="3.mp4">بسبس</button>
+        <button class="music-item" data-audio-src="4.mp4">بسبوستي</button>
+        <button class="music-item" data-audio-src="5.mpeg">بوسي</button>
+        <button class="music-item" data-audio-src="6.mpeg">كتكوتي</button>
+        <button class="music-item" data-audio-src="7.mpeg">مطلعة عيني </button>
+        <button class="music-item" data-audio-src="9.mpeg">قطتي</button>
+        <button class="music-item" data-audio-src="10.mpeg">روح بابي</button>
+        <button class="music-item" data-audio-src="11.mpeg">ام العيال</button>
+        <button class="music-item" data-audio-src="12.mpeg">بسنت</button>
+        <button class="music-item" data-audio-src="13.mpeg">حبي</button>
+
+      </div>
+    </section>
+
+    <!-- Final -->
+    <section class="section section-final">
+      <button
+        id="to-messages"
+        class="final-button glow"
+        data-action="go-messages"
+      >
+        إلى صغيرتي ❤️
+      </button>
+    </section>
+
+  </div>
+</section>
+
+<!-- ============================= -->
+<!-- Messages Page -->
+<!-- ============================= -->
+<section id="page-messages" class="page" data-page="messages">
+  <div class="page-inner">
+<!-- زر العودة للصفحة الرئيسية -->
+<a href="index.html" class="back-button">
+  ⟵ العودة إلى الذكريات
+</a>
+
+<!-- ستايل للزر -->
+<style>
+.back-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  color: #333;
+  text-decoration: none;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  margin: 10px 0;
+  transition: background-color 0.3s;
+}
+.back-button:hover {
+  background-color: #ddd;
+}
+</style>
+
+
+    <header class="messages-header">
+      <h1 class="glow">…</h1>
+    </header>
+
+    <div class="messages-container">
+      <div class="message-box" data-animate="fade-in">كل سنة وأنتِ البداية والنهاية</div>
+      <div class="message-box" data-animate="fade-in">2026 لن تكون سنة… ستكون نحن</div>
+      <div class="message-box" data-animate="fade-in">وجودك هو العيد الحقيقي</div>
+      <div class="message-box" data-animate="fade-in">أحبك أكثر مما تستطيع الكلمات قوله</div>
     </div>
-  </section>
 
-  <!-- Scripts -->
-  <script src="script.js" defer></script>
+  </div>
+</section>
+
+<!-- ============================= -->
+<!-- Scripts -->
+<!-- ============================= -->
+<script src="script.js" defer></script>
+
 </body>
 </html>
